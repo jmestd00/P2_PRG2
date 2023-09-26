@@ -2,8 +2,7 @@ package funcionCn;
 
 /**
  * Define los  métodos que implentan las distintas implementaciones de la función Cn
- **/
- 
+ */
 public interface IFuncionCn{
 /**
 	 * Implementación recursiva directa

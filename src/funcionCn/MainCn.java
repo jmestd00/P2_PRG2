@@ -1,20 +1,20 @@
 package funcionCn;
+
+import java.util.Scanner;
+
 /**
-1. Se desea calcular el valor C(n) dado por
-  C(n) = 2/n Sum_{i=0}^{n-1}C(i) + n con C(0) = 1.
-Se pide:
+ 1. Se desea calcular el valor C(n) dado por
+ C(n) = 2/n Sum_{i=0}^{n-1}C(i) + n con C(0) = 1.
+ Se pide:
  1. Dar una solución recursiva del problema
  2. Dar una solución recursiva sin uso de ningún bucle
  3. Dar una solución iterativa
  4. ¿cuál de las dos es computacionalmente más interesante?
  5. ¿Puedes conseguir una solución con complejidad lineal en n?
- 6. ¿puedes conseguir una solución recursiva lineal en n? 
+ 6. ¿puedes conseguir una solución recursiva lineal en n?
 
-Analizar con un profiler las llamadas a las 4 funciones con n=20 y n=25. 
+ Analizar con un profiler las llamadas a las 4 funciones con n=20 y n=25.
  */
-
-import java.util.Scanner;
-
 public class MainCn {
 	public static void main (String[] args){
 		Scanner scan = new Scanner(System.in);
