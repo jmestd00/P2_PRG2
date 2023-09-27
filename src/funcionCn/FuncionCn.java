@@ -1,6 +1,9 @@
 package funcionCn;
 
-public class FuncionCn implements IFuncionCn{
+import java.util.ArrayList;
+import java.util.List;
+
+public class FuncionCn implements IFuncionCn {
     /**
      * Implementación recursiva directa
      * <p>
@@ -11,8 +14,15 @@ public class FuncionCn implements IFuncionCn{
      */
     @Override
     public double CnRD(int n) {
-        //TODO recursiva directa
-        return 0;
+        if (n == 0) {
+            return 1.0;
+        }
+
+        double res = 0;
+        for (int i = 0; i < n; i++) {
+            res += CnRD(i);
+        }
+        return n + 2.0 / n * res;
     }
 
     /**
@@ -23,8 +33,19 @@ public class FuncionCn implements IFuncionCn{
      */
     @Override
     public double CnCRD(int n) {
-        //TODO recursiva sin bucles
-        return 0;
+        if (n == 0) {
+            return 1.0;
+        }
+
+        double res = SumCnCRDRec(n - 1, 1);
+        return n + 2.0 / n * res;
+    }
+
+    private double SumCnCRDRec(int i, double acc) {
+        if (i == 0) {
+            return acc;
+        }
+        return SumCnCRDRec(i - 1, acc + CnCRD(i));
     }
 
     /**
@@ -35,25 +56,41 @@ public class FuncionCn implements IFuncionCn{
      */
     @Override
     public double CnI(int n) {
-        //TODO iterativa directa
-        return 0;
+        double[] cs = new double [n+1];
+        cs[0] = 1.0;
+
+        for (int i = 1; i <= n; i++) {
+            double res = 0.0;
+            for (int j = 0; j < i; j++) {
+                res += cs[j];
+            }
+            cs[i] = i + 2.0/i * res;
+        }
+        return cs[n];
     }
 
     /**
      * Solución iterativa lineal de Cn. Esta solución se basa en la propiedad:
      * suma[n] = \sum_{i=0}^{n} C(i)
-     * = C(n) +  \sum_{i=0}^{n-1} C(i) //sustituyendo C(n) y el sumatorio
+     * = C(n) + \sum_{i=0}^{n-1} C(i) //sustituyendo C(n) y el sumatorio
      * = (2/n)*suma[n-1] + n + suma[n-1]
      * Esta def recurrente permite usar una variable acumuladora para calcular suma[n]
-     * Ya no hay un doble for y por tanto se pasa de complejidad  cuadrática a complejidad lineal
+     * Ya no hay un doble for y, por tanto, se pasa de complejidad cuadrática a complejidad lineal
      *
      * @param n >= 0
      * @return devuelve el cálculo de la función Cn definida previamente
      */
     @Override
     public double CnIterativaLineal(int n) {
-        //TODO iterativa lineal
-        return 0;
+        if (n == 0) {
+            return 1.0;
+        }
+
+        double res = 1;
+        for (int i = 1; i < n; i++) {
+            res += (2.0 / i) * res + i;
+        }
+        return n + (2.0 / n) * res;
     }
 
     /**
@@ -65,7 +102,20 @@ public class FuncionCn implements IFuncionCn{
      */
     @Override
     public double CnRecursivaLineal(int n) {
-        //TODO recursiva lineal
-        return 0;
+        if (n == 0) {
+            return 1;
+        }
+
+        double res = SumCRL(n-1);
+        return n + 2.0 / n * res;
+    }
+
+    private double SumCRL(int i) {
+        if (i == 0) {
+            return 1.0;
+        }
+
+        double res = SumCRL(i-1);
+        return 2.0/i * res + i + res;
     }
 }

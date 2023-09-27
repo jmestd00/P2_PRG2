@@ -1,4 +1,12 @@
+#Directorios
 /.idea/
 /out/
+
+#Archivos
 /Practica2.iml
 .DS_Store
+
+#Medios
+*.png
+*.jpg
+*.gif
